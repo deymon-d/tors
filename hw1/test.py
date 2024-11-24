@@ -5,7 +5,7 @@ import time
 def check_result(file_path):
     with open(file_path) as result:
         with open("result.txt") as exec_result:
-            if any(map(lambda x: abs(float(x[0]) - float(x[1])) < 1, zip(exec_result.readlines(), result.readlines()))):
+            if any(map(lambda x: abs(float(x[0]) - float(x[1])) > 1, zip(exec_result.readlines(), result.readlines()))):
                 raise RuntimeError("not correct")
     os.remove("result.txt")
 
