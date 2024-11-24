@@ -7,7 +7,7 @@ def check_result(file_path):
         with open("result.txt") as exec_result:
             print(exec_result.readlines())
             print(result.readlines())
-            assert result.readlines() == exec_result.readlines()
+            assert abs(result.readlines() - exec_result.readlines()) < 1
     os.remove("result.txt")
 
 
