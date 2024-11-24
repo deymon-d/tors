@@ -5,9 +5,8 @@ import time
 def check_result(file_path):
     with open(file_path) as result:
         with open("result.txt") as exec_result:
-            print(exec_result.readlines())
-            print(result.readlines())
-            assert abs(result.readlines() - exec_result.readlines()) < 1
+            if any(map(lambda x: abs(x[0] - x[1]) < 1, zip(exec_result.readlines(), result.readlines()))):
+                raise RuntimeError("not correct")
     os.remove("result.txt")
 
 
