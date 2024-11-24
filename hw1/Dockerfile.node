@@ -1,0 +1,6 @@
+FROM ubuntu:22.04
+WORKDIR /server
+RUN apt update
+RUN apt install libc6
+COPY node node
+CMD ["./node"]

@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  server1:
+    build:
+      context: .
+      dockerfile: Dockerfile.node
+    container_name: server1
+    networks:
+      - my_net
+    restart: always
+
+  server2:
+    build:
+      context: .
+      dockerfile: Dockerfile.node
+    container_name: server2
+    networks:
+      - my_net
+    restart: always
+
+  server3:
+    build:
+      context: .
+      dockerfile: Dockerfile.node
+    container_name: server3
+    networks:
+      - my_net
+    restart: always
+
+  master:
+    build:
+      context: .
+      dockerfile: Dockerfile.master
+    container_name: master
+    depends_on:
+      - server1
+      - server2
+      - server3
+    networks:
+      - my_net
+    restart: on-failure
+
+networks:
+  my_net:
+    driver: bridge

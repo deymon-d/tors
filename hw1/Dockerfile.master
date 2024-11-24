@@ -1,0 +1,6 @@
+FROM python
+WORKDIR /server
+COPY tests/ tests/
+COPY test.py test.py
+COPY master master
+CMD ["python3", "/server/test.py"]
